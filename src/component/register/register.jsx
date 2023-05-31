@@ -39,7 +39,7 @@ let Register = () => {
     return (
         <body>
             <div ref={cursorRef} className={s.bluredCursor}></div>
-            {/* <div ref={cursorRef} className={interact ? s.interactiveCircleShow : s.interactiveCircleHide}></div> */}
+            <div className={interact ? s.interactiveCircleShow : s.interactiveCircleHide}></div>
             <div className={s.blur}></div>
             <div className={s.frame}>
             <div className={s.window}>
@@ -57,14 +57,7 @@ let Register = () => {
                     <input type="submit" className={s.submit} value="Submit"/>
                 </div>
 
-                <p>Have an account? <a className={s.link} href="/login"
-                    onMouseEnter={() => {
-                        setInteract(true)
-                    }}
-                    onMouseLeave={() => {
-                        setInteract(false)
-                    }}
-                >Login</a></p>
+                <p>Have an account? <a className={s.link} href="/login">Login</a></p>
             </div>
             </div>
         </body>

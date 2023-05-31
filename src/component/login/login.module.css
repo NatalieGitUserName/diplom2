@@ -174,7 +174,7 @@ body:hover > .bluredCursor {
   pointer-events: none;
 }
 
-body .interactiveCircleShow {
+/* body .interactiveCircleShow {
   position: absolute;
   animation: interactiveCircleShow 0.5s;
   height: 70px;
@@ -215,6 +215,6 @@ body .interactiveCircleHide {
     width: 0;
     border: 0px solid white;
   }
-}
+} */
 
 /*# sourceMappingURL=login.module.css.map */
