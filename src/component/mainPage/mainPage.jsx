@@ -2,6 +2,7 @@ import s from "./mainPage.module.css"
 import {useEffect, useRef, useState} from "react";
 import {throttle} from 'lodash';
 import {NavLink} from "react-router-dom";
+import ball from '../../img/ball.jpg'
 
 let MainPage = () => {
 
@@ -44,9 +45,10 @@ let MainPage = () => {
     return (
         <body>
         <div ref={cursorRef} className={s.cursorContainer}
-             style={{width: "1rem", height: "1rem", zIndex: 10000}}>
+             style={{width: "1.3rem", height: "1.3rem", zIndex: 10000}}>
             <div className={interact ? s.interactiveCircleShow : s.interactiveCircleHide}></div>
-            <div className={!interact ? s.cursorShow : s.cursorHide}></div>
+            <div className={s.rotating}><img className={!interact ? s.cursorShow : s.cursorHide} src={require('../../img/football.png')} alt=""/></div>
+
         </div>
         <nav>
             <div className={`${s.navSection} ${s.navLogoSection}`}>
@@ -209,7 +211,7 @@ let MainPage = () => {
             <article
                 className={article === 0 ? openingSide === 'left' ? s.articleShowFromRight : s.articleShowFromLeft : openingSide === 'left' ? s.articleHideToLeft : s.articleHideToRight}>
                 <div className={s.articleImageSection}
-                     style={{backgroundImage: `url(${require("../../img/ball.jpg")})`}}></div>
+                     style={{backgroundImage: `url(${ball})`}}></div>
                 <div className={s.articleDescriptionSection}>
                     <div className={s.descriptionSection}>
                         <p

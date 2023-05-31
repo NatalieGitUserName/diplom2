@@ -172,7 +172,7 @@ body {
     line-height: 3rem;
     text-transform: uppercase;
     font-weight: bold;
-    width: 690px;
+    width: 765px;
   }
 
   .articleNavButton {
@@ -206,12 +206,12 @@ body {
   }
 
   .cursorShow {
-    height: 1rem;
-    width: 1rem;
-    animation: cursorShow 0.5s;
+    height: 1.3rem;
+    width: 1.3rem;
+    animation: cursorShow 0.6s;
     position: absolute;
     z-index: 100000;
-    background-color: white;
+    //background-color: white;
     border-radius: 50%;
     pointer-events: none;
     opacity: 0;
@@ -221,10 +221,10 @@ body {
   .cursorHide {
     height: 0;
     width: 0;
-    animation: cursorHide 0.3s;
+    animation: cursorHide 0.4s;
     position: absolute;
     z-index: 100000;
-    background-color: white;
+    //background-color: white;
     border-radius: 50%;
     pointer-events: none;
     opacity: 0;
@@ -238,15 +238,15 @@ body {
     }
 
     to {
-      height: 1rem;
-      width: 1rem;
+      height: 1.3rem;
+      width: 1.3rem;
     }
   }
 
   @keyframes cursorHide {
     from {
-      height: 1rem;
-      width: 1rem;
+      height: 1.3rem;
+      width: 1.3rem;
     }
 
     to {
@@ -326,12 +326,12 @@ body {
   }
 
   .articleShowFromRight {
-    transform: translateX(0);
+    transform: translateX(1px);
     animation: articleShowFromRight 0.4s;
   }
 
   .articleShowFromLeft {
-    transform: translateX(0);
+    transform: translateX(1px);
     animation: articleShowFromLeft 0.4s;
   }
 
@@ -341,7 +341,7 @@ body {
     }
 
     to {
-      transform: translateX(0);
+      transform: translateX(1px);
     }
   }
   @keyframes articleShowFromLeft {
@@ -350,7 +350,7 @@ body {
     }
 
     to {
-      transform: translateX(0);
+      transform: translateX(1px);
     }
   }
 
@@ -366,7 +366,7 @@ body {
 
   @keyframes articleHideToLeft {
     from {
-      transform: translateX(0);
+      transform: translateX(1px);
       display: grid;
     }
 
@@ -377,7 +377,7 @@ body {
   }
   @keyframes articleHideToRight {
     from {
-      transform: translateX(0);
+      transform: translateX(1px);
       display: grid;
     }
 
@@ -385,6 +385,31 @@ body {
       transform: translateX(100%);
       display: none;
     }
+  }
+
+  @-webkit-keyframes rotating
+  {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .rotating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotating 6s linear infinite;
   }
 }
 
