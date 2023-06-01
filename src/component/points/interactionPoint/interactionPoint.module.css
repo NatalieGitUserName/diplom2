@@ -1,0 +1,133 @@
+.cursorSmall {
+  fill: #d0d0d0;
+  height: 1.3rem;
+  width: 1.3rem;
+  animation: cursorSmall 0.4s;
+  position: absolute;
+  z-index: 100000;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.cursorBig {
+  fill: rgba(99, 11, 214, 0.15);
+  height: 4rem;
+  width: 4rem;
+  animation: cursorBig 0.3s;
+  position: absolute;
+  z-index: 100000;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+@keyframes cursorSmall {
+  from {
+    height: 4rem;
+    width: 4rem;
+    fill: rgba(99, 11, 214, 0.15);
+  }
+  to {
+    height: 1.3rem;
+    width: 1.3rem;
+    fill: #d0d0d0;
+  }
+}
+@keyframes cursorBig {
+  from {
+    height: 1.3rem;
+    width: 1.3rem;
+    fill: #d0d0d0;
+  }
+  to {
+    height: 4rem;
+    width: 4rem;
+    fill: rgba(99, 11, 214, 0.15);
+  }
+}
+.interactiveCircleShow {
+  position: absolute;
+  animation: interactiveCircleShow 0.5s;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: rgba(99, 11, 214, 0.3);
+  border: 1px solid white;
+  pointer-events: none;
+}
+
+.interactiveCircleHide {
+  position: absolute;
+  animation: interactiveCircleHide 0.3s;
+  height: 0;
+  width: 0;
+  border-radius: 50%;
+  background-color: rgba(99, 11, 214, 0.3);
+  border: 0px solid white;
+  pointer-events: none;
+}
+
+@keyframes interactiveCircleShow {
+  from {
+    height: 0;
+    width: 0;
+  }
+  to {
+    height: 70px;
+    width: 70px;
+  }
+}
+@keyframes interactiveCircleHide {
+  from {
+    height: 70px;
+    width: 70px;
+    border: 1px solid white;
+  }
+  to {
+    height: 0;
+    width: 0;
+    border: 0px solid white;
+  }
+}
+.cursorContainer {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotating 10s linear infinite;
+}
+
+body:hover .cursorSmall {
+  opacity: 1;
+}
+body:hover .cursorBig {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=interactionPoint.module.css.map */

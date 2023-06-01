@@ -1,65 +1,27 @@
 import s from "./mainPage.module.css"
-import {useEffect, useRef, useState} from "react";
-import {throttle} from 'lodash';
+import {useState} from "react";
 import {NavLink} from "react-router-dom";
 import ball from '../../img/ball.jpg'
+import {useDispatch} from "react-redux";
+import {interactAction} from "../../store/clubReducer";
+import InteractionPoint from "../points/interactionPoint/interactionPoint";
 
 let MainPage = () => {
 
     const [article, setArtical] = useState(0)
     const [openingSide, setOpeningSide] = useState('')
 
-
-    const cursorRef = useRef(null);
-    const [interact, setInteract] = useState(false);
-    useEffect(() => {
-        const cursor = cursorRef.current;
-
-        if (cursor) {
-            const handleMouseMove = throttle((e) => {
-                animateCursor(e);
-            }, 20);
-
-            window.addEventListener('mousemove', handleMouseMove);
-
-            return () => {
-                window.removeEventListener('mousemove', handleMouseMove);
-            };
-        }
-    }, []);
-
-    const animateCursor = (e) => {
-        const x = e.clientX - cursorRef.current.offsetWidth / 2;
-        const y = e.clientY - cursorRef.current.offsetHeight / 2;
-
-        const frameKeys = {
-            transform: `translate(${x}px, ${y}px)`,
-        };
-
-        cursorRef.current.animate(frameKeys, {
-            duration: 900,
-            fill: 'forwards',
-        });
-    };
+    const dispatch = useDispatch()
 
     return (
         <body>
-        <div ref={cursorRef} className={s.cursorContainer}
-             style={{width: "1.3rem", height: "1.3rem", zIndex: 10000}}>
-            <div className={interact ? s.interactiveCircleShow : s.interactiveCircleHide}></div>
-            <div className={s.rotating}><img className={!interact ? s.cursorShow : s.cursorHide} src={require('../../img/football.png')} alt=""/></div>
-
-        </div>
+        <InteractionPoint/>
         <nav>
             <div className={`${s.navSection} ${s.navLogoSection}`}>
                 <a href="#">
                     <svg
-                        onMouseEnter={() => {
-                            setInteract(true)
-                        }}
-                        onMouseLeave={() => {
-                            setInteract(false)
-                        }}
+                        onMouseEnter={() => {dispatch(interactAction(true))}}
+                        onMouseLeave={() => {dispatch(interactAction(false))}}
                         className={`${s.iconLogo}`} version="1.0" xmlns="http://www.w3.org/2000/svg"
                         width="3em" height="3em" viewBox="0 0 512.000000 512.000000"
                         preserveAspectRatio="xMidYMid meet">
@@ -125,27 +87,18 @@ let MainPage = () => {
                         </g>
                     </svg>
 
-
                 </a>
             </div>
             <div className={`${s.navSection} ${s.navLinkSection}`}>
                 <a href="./about-us"
-                   onMouseEnter={() => {
-                       setInteract(true)
-                   }}
-                   onMouseLeave={() => {
-                       setInteract(false)
-                   }}
+                   onMouseEnter={() => {dispatch(interactAction(true))}}
+                   onMouseLeave={() => {dispatch(interactAction(false))}}
                 >ABOUT US</a>
 
                 <NavLink
                     to="/login"
-                    onMouseEnter={() => {
-                        setInteract(true)
-                    }}
-                    onMouseLeave={() => {
-                        setInteract(false)
-                    }}
+                    onMouseEnter={() => {dispatch(interactAction(true))}}
+                    onMouseLeave={() => {dispatch(interactAction(false))}}
                 >
                     YOUR JORNEY
                 </NavLink>;
@@ -154,12 +107,8 @@ let MainPage = () => {
                 <a href="https://www.instagram.com/">
                     <svg className={s.icon} xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 448 512"
-                         onMouseEnter={() => {
-                             setInteract(true)
-                         }}
-                         onMouseLeave={() => {
-                             setInteract(false)
-                         }}
+                         onMouseEnter={() => {dispatch(interactAction(true))}}
+                         onMouseLeave={() => {dispatch(interactAction(false))}}
                     >
                         <path
                             d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
@@ -169,12 +118,8 @@ let MainPage = () => {
                 <a href="https://www.youtube.com/">
                     <svg className={s.icon} xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 576 512"
-                         onMouseEnter={() => {
-                             setInteract(true)
-                         }}
-                         onMouseLeave={() => {
-                             setInteract(false)
-                         }}
+                         onMouseEnter={() => {dispatch(interactAction(true))}}
+                         onMouseLeave={() => {dispatch(interactAction(false))}}
                     >
                         <path fill="currentColor"
                               d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/>
@@ -183,12 +128,8 @@ let MainPage = () => {
                 <a href="https://web.telegram.org/k/">
                     <svg className={s.icon} xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 496 512"
-                         onMouseEnter={() => {
-                             setInteract(true)
-                         }}
-                         onMouseLeave={() => {
-                             setInteract(false)
-                         }}
+                         onMouseEnter={() => {dispatch(interactAction(true))}}
+                         onMouseLeave={() => {dispatch(interactAction(false))}}
                     >
                         <path fill="currentColor"
                               d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/>
@@ -197,12 +138,9 @@ let MainPage = () => {
             </div>
             <div className={`${s.navSection} ${s.navContactSection}`}>
                 <a href="mailto:email@example.com"
-                   onMouseEnter={() => {
-                       setInteract(true)
-                   }}
-                   onMouseLeave={() => {
-                       setInteract(false)
-                   }}>CONTACT US</a>
+                   onMouseEnter={() => {dispatch(interactAction(true))}}
+                   onMouseLeave={() => {dispatch(interactAction(false))}}
+                >CONTACT US</a>
             </div>
         </nav>
 
@@ -215,12 +153,9 @@ let MainPage = () => {
                 <div className={s.articleDescriptionSection}>
                     <div className={s.descriptionSection}>
                         <p
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}>Sport is a journey of self-discovery, where one learns the value of discipline,
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >Sport is a journey of self-discovery, where one learns the value of discipline,
                             perseverance,
                             and teamwork. It teaches us to embrace challenges, overcome obstacles, and celebrate
                             victories. It instills in us a sense of purpose, resilience, and the belief that anything is
@@ -231,12 +166,9 @@ let MainPage = () => {
                 <div className={s.articleHeadingSection}>
                     <div className={s.headingSection}>
                         <h1
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}>WHAT CONNECTS US</h1>
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >WHAT CONNECTS US</h1>
                     </div>
                 </div>
                 <div className={s.articleNavSection}>
@@ -244,12 +176,8 @@ let MainPage = () => {
                         setArtical(2)
                         setOpeningSide('right')
                     }}
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
                     >
                         <svg className={s.iconButton} fill="currentColor" viewBox="0 0 32 32"
                              xmlns="http://www.w3.org/2000/svg">
@@ -261,12 +189,8 @@ let MainPage = () => {
                         setArtical(1)
                         setOpeningSide('left')
                     }}
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
                     >
                         <svg className={s.iconButton} fill="currentColor" viewBox="0 0 32 32"
                              xmlns="http://www.w3.org/2000/svg">
@@ -283,51 +207,35 @@ let MainPage = () => {
                 <div className={s.articleDescriptionSection}>
                     <div className={s.descriptionSection}>
                         <p
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}>At our sport club, we're passionate about promoting an active and healthy lifestyle
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >At our sport club, we're passionate about promoting an active and healthy lifestyle
                             though
                             sports.</p>
                         <p
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}> Whether you're a seasoned athlethe or just starting your jorney, our community is happy
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        > Whether you're a seasoned athlethe or just starting your jorney, our community is happy
                             to
                             help you on your way.</p>
                         <a className={`${s.invitationLink}`} href="./about-us"
-                           onMouseEnter={() => {
-                               setInteract(true)
-                           }}
-                           onMouseLeave={() => {
-                               setInteract(false)
-                           }}>Learn more about us</a>
+                           onMouseEnter={() => {dispatch(interactAction(true))}}
+                           onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >Learn more about us</a>
                     </div>
                 </div>
                 <div className={s.articleHeadingSection}>
                     <div className={s.headingSection}>
                         <h1
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}>ABOUT US</h1>
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                            >ABOUT US</h1>
                     </div>
                 </div>
                 <div className={s.articleNavSection}>
                     <button className={`${s.articleNavButton} ${s.leftButton}`}
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
                             onClick={() => {
                                 setArtical(0)
                                 setOpeningSide('right')
@@ -339,12 +247,8 @@ let MainPage = () => {
                         </svg>
                     </button>
                     <button className={`${s.articleNavButton} ${s.rightButton}`}
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
                             onClick={() => {
                                 setArtical(2)
                                 setOpeningSide('left')
@@ -364,49 +268,33 @@ let MainPage = () => {
                 <div className={s.articleDescriptionSection}>
                     <div className={s.descriptionSection}>
                         <p
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}>Embarking on the journey of doing sport is an exhilarating and transformative experience,
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >Embarking on the journey of doing sport is an exhilarating and transformative experience,
                             and
                             it's even more fascinating to share such moments with someone.</p>
                         <p
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}> You can start your jorney with us <a className={`${s.invitationLink}`}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        > You can start your jorney with us <a className={`${s.invitationLink}`}
                                                                      href="./login"
-                                                                     onMouseEnter={() => {
-                                                                         setInteract(true)
-                                                                     }}
-                                                                     onMouseLeave={() => {
-                                                                         setInteract(false)
-                                                                     }}>here.</a></p>
+                                                               onMouseEnter={() => {dispatch(interactAction(true))}}
+                                                               onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >here.</a></p>
                     </div>
                 </div>
                 <div className={s.articleHeadingSection}>
                     <div className={s.headingSection}>
                         <h1
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}>YOUR JORNEY</h1>
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
+                        >YOUR JORNEY</h1>
                     </div>
                 </div>
                 <div className={s.articleNavSection}>
                     <button className={`${s.articleNavButton} ${s.leftButton}`}
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
                             onClick={() => {
                                 setArtical(1)
                                 setOpeningSide('right')
@@ -418,12 +306,8 @@ let MainPage = () => {
                         </svg>
                     </button>
                     <button className={`${s.articleNavButton} ${s.rightButton}`}
-                            onMouseEnter={() => {
-                                setInteract(true)
-                            }}
-                            onMouseLeave={() => {
-                                setInteract(false)
-                            }}
+                            onMouseEnter={() => {dispatch(interactAction(true))}}
+                            onMouseLeave={() => {dispatch(interactAction(false))}}
                             onClick={() => {
                                 setArtical(0)
                                 setOpeningSide('left')

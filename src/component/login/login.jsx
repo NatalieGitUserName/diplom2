@@ -1,61 +1,48 @@
 import s from "./login.module.css"
-import {useEffect, useRef, useState} from "react";
-import {throttle} from "lodash";
-
+import InteractionPoint from "../points/interactionPoint/interactionPoint";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {interactAction} from "../../store/clubReducer";
+import BluredInteractionPoint from "../points/bluredInteractionPoint/bluredInteractionPoint";
 let Login = () => {
 
-    const cursorRef = useRef(null);
-    const [interact, setInteract] = useState(false);
-    useEffect(() => {
-        const cursor = cursorRef.current;
+    const dispatch = useDispatch()
 
-        if (cursor) {
-            const handleMouseMove = throttle((e) => {
-                animateCursor(e);
-            }, 20);
-
-            window.addEventListener('mousemove', handleMouseMove);
-
-            return () => {
-                window.removeEventListener('mousemove', handleMouseMove);
-            };
-        }
-    }, []);
-
-    const animateCursor = (e) => {
-        const x = e.clientX - cursorRef.current.offsetWidth / 2;
-        const y = e.clientY - cursorRef.current.offsetHeight / 2;
-
-        const frameKeys = {
-            transform: `translate(${x}px, ${y}px)`,
-        };
-
-        cursorRef.current.animate(frameKeys, {
-            duration: 500,
-            fill: 'forwards',
-        });
-    };
+    useEffect( () => {
+        dispatch(interactAction(false))
+    }, [])
 
     return (
         <body>
-        <div ref={cursorRef} className={s.bluredCursor}></div>
-        {/* <div className={s.interactiveCircle}></div> */}
-        <div className={s.blur}></div>
+        <InteractionPoint onlyBig={true}/>
+        <BluredInteractionPoint/>
         <div className={s.frame}>
             <div className={s.window}>
-                <h1 className={s.pageTitle}>Login</h1>
+                <h1 className={s.pageTitle}
+                    onMouseEnter={() => {dispatch(interactAction(true))}}
+                    onMouseLeave={() => {dispatch(interactAction(false))}}>Login</h1>
                 <br/>
-                <strong class={s.errorMessage}>Алярм</strong>
+                <strong className={s.errorMessage}
+                        onMouseEnter={() => {dispatch(interactAction(true))}}
+                        onMouseLeave={() => {dispatch(interactAction(false))}}>Алярм</strong>
                 <br/>
                 <div className={s.form}>
-                    <input type="email" name="email" className={s.userEmail} placeholder="Email"/>
+                    <input type="email" name="email" className={s.userEmail} placeholder="Email"
+                           onMouseEnter={() => {dispatch(interactAction(true))}}
+                           onMouseLeave={() => {dispatch(interactAction(false))}}/>
 
-                    <input type="password" name="password" className={s.userPassword} placeholder="Password"/>
+                    <input type="password" name="password" className={s.userPassword} placeholder="Password"
+                           onMouseEnter={() => {dispatch(interactAction(true))}}
+                           onMouseLeave={() => {dispatch(interactAction(false))}}/>
 
-                    <input type="submit" className={s.submit} value="Submit"/>
+                    <input type="submit" className={s.submit} value="Submit"
+                           onMouseEnter={() => {dispatch(interactAction(true))}}
+                           onMouseLeave={() => {dispatch(interactAction(false))}}/>
                 </div>
 
-                <p>Don't have an account? <a className={s.link} href="/register">Singup</a></p>
+                <p>Don't have an account? <a className={s.link} href="/register"
+                                             onMouseEnter={() => {dispatch(interactAction(true))}}
+                                             onMouseLeave={() => {dispatch(interactAction(false))}}>Singup</a></p>
             </div>
         </div>
         </body>
