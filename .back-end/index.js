@@ -59,10 +59,19 @@ app.post('/register', (req, res) => {
 app.get('/getOffers', (req, res) => {
     pool.query('SELECT * FROM offers', (error, results) => {
         return res.status(200).send(results)}
-
     )
     res.status(500)
 })
+
+app.get('/getOffer', (req, res) => {
+    const {id} = req.query
+
+    pool.query(`SELECT * FROM offers WHERE id = ${id}`, (error, results) => {
+        return res.status(200).send(results[0])}
+    )
+    res.status(500)
+})
+
 app.listen(3001, () => {
     console.log('Server is running on port 3001');
 });

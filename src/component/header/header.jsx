@@ -3,13 +3,13 @@ import {NavLink} from "react-router-dom";
 import {interactAction} from "../../store/clubReducer";
 import {useDispatch} from "react-redux";
 
-let Header = () => {
+let Header = (props) => {
 
     const dispatch = useDispatch()
 
     return (
         <header>
-            <span className={s.logoTitle}>Offers</span>
+            <span className={s.logoTitle}>{props.title}</span>
             <NavLink to="/" style={{zIndex: 5}}>
                 <button className={s.logoHomeLink}
                         onMouseEnter={() => {dispatch(interactAction(true))}}

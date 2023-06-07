@@ -1,0 +1,101 @@
+:root {
+  --background-color: #050a18;
+  --highlighted-text: aquamarine;
+  --icon-color: rgb(163,116,255);
+  --hovered-button: rgb(255,208,116);
+}
+
+* {
+  margin: 0px;
+}
+
+body {
+  background-color: var(--background-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 3em 0;
+}
+
+main {
+  flex-grow: 1;
+  position: relative;
+}
+
+main > article {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  transition: transform 500ms ease;
+}
+
+.grid-article {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+main > article[data-status=inactive] {
+  transform: translateY(100%);
+  transform: scale(0);
+}
+
+main > article[data-status=after] {
+  transform: translateY(-110%);
+}
+
+article {
+  /*padding: 0 80px;*/
+}
+
+.coloredText {
+  color: var(--highlighted-text);
+}
+
+.gifImage {
+  border-radius: 25px;
+  transition: all 500ms ease-in-out;
+  position: absolute;
+  width: 1000px;
+  z-index: 3;
+  filter: grayscale(90%);
+  left: 10rem;
+  top: 10rem;
+  opacity: 0.4;
+}
+
+.articleOffersDescription {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.articleParticularOffersDescription {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.textOffersDescription {
+  color: white;
+  font-family: antique-olive, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 1.6em;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  top: 5rem;
+  left: -6rem;
+  line-height: 1.6;
+  cursor: default;
+}
+
+/*# sourceMappingURL=offer.module.css.map */

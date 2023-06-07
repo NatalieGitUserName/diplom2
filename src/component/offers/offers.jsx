@@ -21,12 +21,11 @@ let Offers = () => {
 
     const offersList = stateOffers.map((offers) => {return <Card key={offers.id} id={offers.id} title={offers.title} time={offers.time} day={offers.day} age={offers.age} photo={offers.photo}/>})
 
-
     return (
         <div className={s.container}>
             <BluredInteractionPoint/>
             <InteractionPoint onlyBig={true}/>
-            <Header/>
+            <Header title={'Offers'}/>
             <div>
                 <article>
                     <div className={s.catalogue}>

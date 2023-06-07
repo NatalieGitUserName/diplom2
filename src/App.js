@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import MainPage from "./component/mainPage/mainPage";
 import Register from "./component/register/register";
 import Offers from "./component/offers/offers";
+import Offer from "./component/offer/offer";
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
                 }/>
                 <Route path={'/offers'} element={
                     <Offers/>
+                }/>
+                <Route path={'/offer/:id'} element={
+                    <Offer/>
                 }/>
             </Routes>
         </div>

@@ -28,7 +28,7 @@ let Card = (props) => {
             <NavLink
                 onMouseEnter={() => {dispatch(interactAction(true))}}
                 onMouseLeave={() => {dispatch(interactAction(false))}}
-                className={s.cardButton} to={'/offer&number=' + props.id}>See more</NavLink>
+                className={s.cardButton} to={'/offer/' + props.id}>See more</NavLink>
         </div>
     )
 }

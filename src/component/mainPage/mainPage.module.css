@@ -66,16 +66,16 @@ nav .navSocialMediaSection, nav .navContactSection {
   flex-grow: 1;
 }
 
-body h1, body h2, body h3, body a, body p, body span {
+.main h1, .main h2, .main h3, .main a, .main p, .main span {
   font-weight: 400;
   font-family: "Space Grotesk", sans-serif;
   color: var(--text-color);
 }
-body p {
+.main p {
   font-size: 1.2rem;
   line-height: 160%;
 }
-body a {
+.main a {
   font-size: 1.2rem;
   text-decoration: none;
 }
