@@ -10,13 +10,13 @@
   /* --link-color: #e1e0e2; */
 }
 
-body {
+.main {
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   height: 100vh;
   margin: 0px;
-  overflow: hidden;
+}
 
 
   nav {
@@ -31,6 +31,28 @@ body {
       border-left: 1px solid var(--border-color);
       justify-content: center;
       align-items: center;
+
+      .navDropDownMenu {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 10rem;
+        background-color: #050a18;
+        z-index: 5;
+        border: 1px solid #393053;
+
+        a {
+          letter-spacing: 0.05em;
+          padding: 1rem;
+          font-size: 1.1rem;
+          font-weight: 400;
+        }
+
+        a:hover {
+          text-decoration: underline;
+          text-decoration-color: #5a4c96;
+        }
+      }
     }
 
     .navLogoSection {
@@ -53,7 +75,7 @@ body {
       flex-grow: 1;
     }
   }
-
+body {
   h1, h2, h3, a, p, span {
     font-weight: 400;
     font-family: 'Space Grotesk', sans-serif;
@@ -69,6 +91,8 @@ body {
     font-size: 1.2rem;
     text-decoration: none;
   }
+
+}
 
   main {
     flex-grow: 1;
@@ -266,5 +290,3 @@ body {
       display: none;
     }
   }
-}
-

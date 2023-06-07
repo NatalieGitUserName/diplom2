@@ -5,11 +5,6 @@
   --hovered-button: rgb(255,208,116);
 }
 
-*{
-  margin: 0px;
-  box-sizing: border-box;
-}
-
 body {
   background-color: var(--background-color);
   height: 100vh;
@@ -17,102 +12,11 @@ body {
   flex-direction: column;
   /* overflow: hidden; */
 }
+//
+//article {
+//  padding: 0 80px;
+//}
 
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2em 3em 0;
-}
-
-.logoTitle {
-  font-family: antique-olive,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-  color: aquamarine;
-  font-weight: bold;
-  font-size: 2.3rem;
-  /* text-decoration: none; */
-  cursor: default;
-  letter-spacing: -0.5px;
-  z-index: 5;
-}
-
-.logoHomeLink {
-  font-family: antique-olive,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-  background-color: var(--icon-color);
-  border-radius: 30px;
-  padding: 1.5rem 3rem;
-  z-index: 5;
-  transition: all 300ms ease-in-out;
-  border: 0;
-  a {
-    width: 100%;
-    height: 100%;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-  }
-}
-
-.articleWithGifNText {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-}
-
-.gifImage {
-  border-radius: 25px;
-  opacity: 0.6;
-  position: absolute;
-  top: 6rem;
-  left: 22rem;
-  width: 70rem;
-  z-index: 3;
-}
-
-.coloredText {
-  color: var(--highlighted-text);
-}
-
-.centeredText{
-  /* position: relative; */
-  top: 80px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  z-index: 4;
-}
-
-.centeredText > div p {
-  color: white;
-}
-
-.centeredText > div p, .coloredText{
-  position: relative;
-  cursor: default;
-  font-size: 10rem;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
-  /* font-size: 10em; */
-}
-
-.centeredText > div p:nth-child(1){
-  margin-bottom: -50px;
-}
-
-.centeredText > div p:nth-child(2) {
-  right: -100px;
-  margin-bottom: -80px;
-}
-
-.centeredText > div p:nth-child(3) {
-  right: 100px;
-}
 
 .button {
   height: 200px;
@@ -147,6 +51,29 @@ header {
   width: 35px;
 }
 
+.buttonGroup {
+  position: relative;
+  top: -60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.contactButton {
+  color: black;
+  background-color: var(--icon-color);
+  text-decoration: none;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+  /* border: 1px solid var(--icon-color); */
+  border-radius: 40px;
+  z-index: 5;
+  padding: 1.5rem 3rem;
+  width: 270px;
+  font-family: antique-olive,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  transition: all 300ms ease-in-out;
+}
 
 
 .catalogue {
@@ -160,54 +87,48 @@ header {
   /* width: 100%; */
 }
 
-.card {
-  margin-bottom: 30px;
-  background-color: rgba(255, 255, 255, 0.932);
-  color: #050a18;
-  width: 470px;
-  height: 340px;
-  text-decoration: none;
-  margin: 1rem 1rem;
+
+.articleOffersDescription {
   display: grid;
-  grid-template-rows: 60% 25% 15%;
+  grid-template-columns: 1fr 1fr;
 }
 
-.cardText{
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
+.articleParticularOffersDescription {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
-.cardTextDetails {
+.buttonsColon {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  position: relative;
+  left: 3rem;
+  top: -7rem;
 }
 
-.cardTextDetails > svg {
-  padding-right: 0.5em
+.textOffersDescription {
+  color: white;
+  font-family: antique-olive,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  font-size: 2em;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  top: -2rem;
+  left: -6rem;
+  line-height: 1.6;
+  cursor: default;
 }
 
-.cardText > h3 {
-  padding-top: 0.5em;
-  font-size: 1.3em;
+
+.secondGifOffers {
+  left: 10rem;
+  top: 10rem;
 }
 
-.cardPicture {
-  background-image: url("../../img/ball-4-card.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.cardButton {
-  /* width: 470px;
-  height: 60px; */
-  height: 100%;
-  width: 100%;
-  border: none;
-  background-color: var(--icon-color);
-  cursor: pointer;
-  font-size: 1em;
-  transition: all 300ms ease-in-out;
+.low-opacity {
+  opacity: 0.4;
 }

@@ -11,7 +11,7 @@
   --page-title: rgba(255, 255, 255, 0.89);
 }
 
-body {
+.login {
   /* background: linear-gradient(#050a18 60%, #393053); */
   background-color: #050a18;
   overflow: hidden;
@@ -92,6 +92,7 @@ body {
   border-bottom: 1px solid var(--border-color);
   width: 350px;
   padding: 5px 0;
+  margin-bottom: 15px;
 }
 
 .form .userEmail, .form .userName {

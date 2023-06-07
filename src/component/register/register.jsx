@@ -1,6 +1,40 @@
 import s from "../login/login.module.css"
+import {NavLink} from "react-router-dom";
+import {useState} from "react";
+import axios from "axios";
 
 let Register = () => {
+
+    const [data, setDate] = useState(
+        {
+            username: '',
+            email: '',
+            password1: '',
+            password2: '',
+        }
+    )
+
+    const [error, setError] = useState(
+        {
+
+    }
+    )
+
+    let register = () => {
+        if (data.username !== '' && data.email !== '' && data.password1 !== '' && data.password2 !== '' && data.password1 === data.password2) {
+            axios.post('http://localhost:3001/register', {
+                username: data.username,
+                email: data.email,
+                password: data.password1
+            })
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
 
     return (
         <body>
@@ -8,19 +42,21 @@ let Register = () => {
             <div className={s.window}>
                 <h1 className={s.pageTitle}>Register</h1>
                 <br/>
-                {/* <strong class={s.errorMessage}>Алярм</strong> */}
+                <strong class={s.errorMessage}>Алярм</strong>
                 <br/>
                 <div className={s.form}>
-                    <input type="text" name="name" className={s.userEmail} placeholder="Name"/>
+                    <input type="text" name="name" className={s.userEmail} value={data.username} onInput={event => {setDate({...data, username: event.target.value})}} placeholder="Name"/>
 
-                    <input type="email" name="email" className={s.userEmail} placeholder="Email"/>
+                    <input type="email" name="email" className={s.userEmail} value={data.email} onInput={event => {setDate({...data, email: event.target.value})}} placeholder="Email"/>
 
-                    <input type="password" name="password" className={s.userPassword} placeholder="Password"/>
+                    <input type="password" name="password" className={s.userPassword} value={data.password1} onInput={event => {setDate({...data, password1: event.target.value})}} placeholder="Password"/>
 
-                    <input type="submit" className={s.submit} value="Submit"/>
+                    <input type="password" name="password" className={s.userPassword} value={data.password2} onInput={event => {setDate({...data, password2: event.target.value})}} placeholder="Repeat password"/>
+
+                    <input type="submit" onClick={register} className={s.submit} value="Submit"/>
                 </div>
 
-                <p>Have an account? <a className={s.link} href="/login">Login</a></p>
+                <p>Have an account? <NavLink className={s.link} to="/login">Login</NavLink></p>
             </div>
             </div>
         </body>

@@ -13,7 +13,7 @@ let Login = () => {
     }, [])
 
     return (
-        <body>
+        <body className={s.login}>
         <InteractionPoint onlyBig={true}/>
         <BluredInteractionPoint/>
         <div className={s.frame}>

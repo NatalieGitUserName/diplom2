@@ -11,10 +11,15 @@ let MainPage = () => {
     const [article, setArtical] = useState(0)
     const [openingSide, setOpeningSide] = useState('')
 
+    const [dropDownMenu, setDropDownMenu] = useState({
+        about: false,
+        journal: false
+    })
+
     const dispatch = useDispatch()
 
     return (
-        <body>
+        <body className={s.main} style={{overflow: 'hidden !importan'}}>
         <InteractionPoint/>
         <nav>
             <div className={`${s.navSection} ${s.navLogoSection}`}>
@@ -90,18 +95,57 @@ let MainPage = () => {
                 </a>
             </div>
             <div className={`${s.navSection} ${s.navLinkSection}`}>
-                <a href="./about-us"
-                   onMouseEnter={() => {dispatch(interactAction(true))}}
-                   onMouseLeave={() => {dispatch(interactAction(false))}}
-                >ABOUT US</a>
+                <div>
+                    <span
+                       onMouseEnter={() => {
+                           dispatch(interactAction(true))
+                           setDropDownMenu({...dropDownMenu, about: true})
+                       }}
+                       onMouseLeave={() => {
+                           dispatch(interactAction(false))
+                           setDropDownMenu({...dropDownMenu, about: false})
+                       }}
+                    >ABOUT US
+                        {dropDownMenu.about && <div className={s.navDropDownMenu}>
+                            <NavLink
+                                onMouseEnter={() => {dispatch(interactAction(true))}}
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>History</NavLink>
+                            <NavLink
+                                onMouseEnter={() => {dispatch(interactAction(true))}}
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>Awards</NavLink>
+                        </div>}
+                    </span>
 
-                <NavLink
-                    to="/login"
-                    onMouseEnter={() => {dispatch(interactAction(true))}}
-                    onMouseLeave={() => {dispatch(interactAction(false))}}
-                >
-                    YOUR JORNEY
-                </NavLink>;
+                </div>
+
+                <div>
+                    <span
+                        onMouseEnter={() => {
+                            dispatch(interactAction(true))
+                            setDropDownMenu({...dropDownMenu, journal: true})
+                        }}
+                        onMouseLeave={() => {
+                            dispatch(interactAction(false))
+                            setDropDownMenu({...dropDownMenu, journal: false})
+                        }}
+                    >YOUR JORNEY
+                        {dropDownMenu.journal && <div className={s.navDropDownMenu}>
+                            <NavLink
+                                to={'/offers'}
+                                onMouseEnter={() => {dispatch(interactAction(true))}}
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>Offers</NavLink>
+                            <NavLink
+                                to={'/schedule'}
+                                onMouseEnter={() => {dispatch(interactAction(true))}}
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>Schedule</NavLink>
+                            <NavLink
+                                to={'/login'}
+                                onMouseEnter={() => {dispatch(interactAction(true))}}
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>Loggin</NavLink>
+                        </div>}
+                    </span>
+                </div>
+
             </div>
             <div className={`${s.navSection} ${s.navSocialMediaSection}`}>
                 <a href="https://www.instagram.com/">

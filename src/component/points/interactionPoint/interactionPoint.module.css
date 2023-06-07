@@ -93,7 +93,7 @@
   }
 }
 .cursorContainer {
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   display: flex;
   justify-content: center;

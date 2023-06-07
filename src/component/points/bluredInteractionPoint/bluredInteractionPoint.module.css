@@ -1,7 +1,7 @@
 .blur {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 0;
   -webkit-backdrop-filter: blur(150px);
   backdrop-filter: blur(150px);
@@ -10,7 +10,7 @@
 .bluredCursor {
   height: 500px;
   width: 500px;
-  position: absolute;
+  position: fixed;
   /* background-color: rgba(99, 11, 214, 0.3); */
   /* backdrop-filter: blur(50px); */
   background: linear-gradient(rgba(99, 11, 214, 0.589), rgba(143, 214, 11, 0.459));

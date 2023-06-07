@@ -10,20 +10,20 @@
   /* --link-color: #e1e0e2; */
 }
 
-body {
+.main {
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   height: 100vh;
   margin: 0px;
-  overflow: hidden;
 }
-body nav {
+
+nav {
   display: flex;
   width: 100%;
   border-bottom: 1px solid var(--border-color);
 }
-body nav .navSection {
+nav .navSection {
   padding: 2rem 2rem;
   display: flex;
   gap: 1rem;
@@ -31,21 +31,41 @@ body nav .navSection {
   justify-content: center;
   align-items: center;
 }
-body nav .navLogoSection {
+nav .navSection .navDropDownMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  background-color: #050a18;
+  z-index: 5;
+  border: 1px solid #393053;
+}
+nav .navSection .navDropDownMenu a {
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+nav .navSection .navDropDownMenu a:hover {
+  text-decoration: underline;
+  text-decoration-color: #5a4c96;
+}
+nav .navLogoSection {
   justify-content: flex-start;
 }
-body nav .navLinkSection {
+nav .navLinkSection {
   gap: 4rem;
 }
-body nav .navSocialMediaSection {
+nav .navSocialMediaSection {
   gap: 2rem;
 }
-body nav .navLogoSection, body nav .navLinkSection {
+nav .navLogoSection, nav .navLinkSection {
   flex-basis: 33.3333333333%;
 }
-body nav .navSocialMediaSection, body nav .navContactSection {
+nav .navSocialMediaSection, nav .navContactSection {
   flex-grow: 1;
 }
+
 body h1, body h2, body h3, body a, body p, body span {
   font-weight: 400;
   font-family: "Space Grotesk", sans-serif;
@@ -59,11 +79,12 @@ body a {
   font-size: 1.2rem;
   text-decoration: none;
 }
-body main {
+
+main {
   flex-grow: 1;
   position: relative;
 }
-body main article {
+main article {
   display: grid;
   height: 100%;
   width: 100%;
@@ -74,68 +95,84 @@ body main article {
   top: 0px;
   transition: transform 500ms ease;
 }
-body main > article[data-status=inactive] {
+
+main > article[data-status=inactive] {
   transform: translateX(-100%);
   transform: scale(0);
 }
-body main > article[data-status=after] {
+
+main > article[data-status=after] {
   transform: translateX(-100%);
 }
-body main > article[data-status=before] {
+
+main > article[data-status=before] {
   transform: translateX(100%);
 }
-body main > article[data-status=preparation-to-translate-to-left] {
+
+main > article[data-status=preparation-to-translate-to-left] {
   transform: translateX(-100%) scale(1);
   transition: none;
 }
-body main > article[data-status=preparation-to-translate-to-right] {
+
+main > article[data-status=preparation-to-translate-to-right] {
   transform: translateX(100%) scale(1);
   transition: none;
 }
-body main > article > .articleImageSection, body main > article > .articleHeadingSection {
+
+main > article > .articleImageSection, main > article > .articleHeadingSection {
   border-right: 1px solid var(--border-color);
 }
-body main > article > .articleImageSection, body main > article > .articleDescriptionSection {
+
+main > article > .articleImageSection, main > article > .articleDescriptionSection {
   border-bottom: 1px solid var(--border-color);
 }
-body main > article > .articleNavSection {
+
+main > article > .articleNavSection {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-body main > article > .articleNavSection > button {
+
+main > article > .articleNavSection > button {
   border-right: 1px solid var(--border-color);
 }
-body .articleImageSection {
+
+.articleImageSection {
   background-position: center 0%;
   background-repeat: no-repeat;
   background-size: cover;
 }
-body .icon {
+
+.icon {
   width: 1.1em;
   height: 1.1em;
   color: var(--icon-color);
 }
-body .iconButton {
+
+.iconButton {
   width: 3rem;
   height: 3rem;
   color: var(--icon-color);
 }
-body .iconLogo {
+
+.iconLogo {
   width: 3em;
   height: 3em;
   color: var(--icon-color);
 }
-body .descriptionSection {
+
+.descriptionSection {
   padding: 3em 4em;
   height: 100%;
   display: flex;
   align-content: flex-end;
   flex-wrap: wrap;
 }
-body .headingSection {
+
+.headingSection {
   padding: 3em 4em;
 }
-body .headingSection h1 {
+
+.headingSection h1 {
   color: white;
   font-family: "Montserrat", sans-serif;
   font-size: 4rem;
@@ -144,38 +181,47 @@ body .headingSection h1 {
   font-weight: bold;
   width: 765px;
 }
-body .articleNavButton {
+
+.articleNavButton {
   background-color: var(--background-color);
   border: none;
   cursor: pointer;
 }
-body .articleNavButton:hover {
+
+.articleNavButton:hover {
   background-color: rgba(30, 36, 53, 0.16);
 }
-body .iconButton {
+
+.iconButton {
   transition: all 250ms ease-in-out;
 }
-body .leftButton:hover > .iconButton {
+
+.leftButton:hover > .iconButton {
   /* transition: all 200ms ease-in-out; */
   transform: translateX(-40%);
   z-index: -1;
 }
-body .rightButton:hover > .iconButton {
+
+.rightButton:hover > .iconButton {
   /* transition: all 200ms ease-in-out; */
   transform: translateX(40%);
   z-index: -1;
 }
-body .invitationLink {
+
+.invitationLink {
   border-bottom: 1px solid var(--text-color);
 }
-body .articleShowFromRight {
+
+.articleShowFromRight {
   transform: translateX(1px);
   animation: articleShowFromRight 0.4s;
 }
-body .articleShowFromLeft {
+
+.articleShowFromLeft {
   transform: translateX(1px);
   animation: articleShowFromLeft 0.4s;
 }
+
 @keyframes articleShowFromRight {
   from {
     transform: translateX(100%);
@@ -192,14 +238,16 @@ body .articleShowFromLeft {
     transform: translateX(1px);
   }
 }
-body .articleHideToRight {
+.articleHideToRight {
   transform: translateX(-100%);
   animation: articleHideToRight 0.4s;
 }
-body .articleHideToLeft {
+
+.articleHideToLeft {
   transform: translateX(-100%);
   animation: articleHideToLeft 0.4s;
 }
+
 @keyframes articleHideToLeft {
   from {
     transform: translateX(1px);
