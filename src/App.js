@@ -5,6 +5,7 @@ import MainPage from "./component/mainPage/mainPage";
 import Register from "./component/register/register";
 import Offers from "./component/offers/offers";
 import Offer from "./component/offer/offer";
+import PersonalPage from "./component/personal-page/personalPage";
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
                 }/>
                 <Route path={'/offer/:id'} element={
                     <Offer/>
+                }/>
+                <Route path={'/personal-page'} element={
+                    <PersonalPage/>
                 }/>
             </Routes>
         </div>

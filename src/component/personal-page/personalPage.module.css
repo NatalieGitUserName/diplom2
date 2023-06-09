@@ -1,0 +1,34 @@
+.container {
+    width: 100%;
+}
+.container .infoBlockContainer {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+}
+.container .infoBlockContainer .infoBlock {
+    width: 900px;
+    height: 100%;
+    background-color: #939393;
+}
+.container .infoBlockContainer .infoBlock .avatar {
+    width: 250px;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+}
+.container .changeInfoContainer {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.container .changeInfoContainer .changeInfo {
+    width: 900px;
+    height: 100%;
+    background-color: #b2b2b2;
+}
+

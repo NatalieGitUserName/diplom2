@@ -25,6 +25,16 @@ let BluredInteractionPoint = () => {
     }, []);
 
     const animateCursor = (e) => {
+
+        // if (cursorRef.current.offsetWidth !== null) {
+        //     cursorRef.current.offsetWidth = '1px';
+        // }
+        //
+        // if (cursorRef.current.offsetHeight !== null) {
+        //     cursorRef.current.offsetHeight = '1px';
+        // }
+
+
         const x = e.clientX - cursorRef.current.offsetWidth / 2;
         const y = e.clientY - cursorRef.current.offsetHeight / 2;
 

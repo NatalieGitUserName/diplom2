@@ -1,7 +1,9 @@
 import s from "../login/login.module.css"
 import {NavLink} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
+import {interactAction, setOffersAction} from "../../store/clubReducer";
+import {useDispatch} from "react-redux";
 
 let Register = () => {
 
@@ -14,11 +16,9 @@ let Register = () => {
         }
     )
 
-    const [error, setError] = useState(
-        {
+    const dispatch = useDispatch()
 
-    }
-    )
+    useEffect(() => {dispatch(interactAction(false))}, [])
 
     let register = () => {
         if (data.username !== '' && data.email !== '' && data.password1 !== '' && data.password2 !== '' && data.password1 === data.password2) {
@@ -42,7 +42,7 @@ let Register = () => {
             <div className={s.window}>
                 <h1 className={s.pageTitle}>Register</h1>
                 <br/>
-                <strong class={s.errorMessage}>Алярм</strong>
+                <strong className={s.errorMessage}>Алярм</strong>
                 <br/>
                 <div className={s.form}>
                     <input type="text" name="name" className={s.userEmail} value={data.username} onInput={event => {setDate({...data, username: event.target.value})}} placeholder="Name"/>
