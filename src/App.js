@@ -1,5 +1,7 @@
 import './App.css';
 import Login from "./component/login/login";
+import Awards from "./component/awards/awards";
+import Schedule from "./component/schedule/schedule";
 import {Route, Routes} from "react-router-dom";
 import MainPage from "./component/mainPage/mainPage";
 import Register from "./component/register/register";
@@ -29,6 +31,12 @@ function App() {
                 }/>
                 <Route path={'/personal-page'} element={
                     <PersonalPage/>
+                }/>
+                <Route path={'/awards'} element={
+                    <Awards/>
+                }/>
+                <Route path={'/schedule'} element={
+                    <Schedule/>
                 }/>
             </Routes>
         </div>

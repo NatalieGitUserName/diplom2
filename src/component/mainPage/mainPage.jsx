@@ -111,6 +111,7 @@ let MainPage = () => {
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>History</NavLink>
                             <NavLink
+                                to={'/awards'}
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>Awards</NavLink>
                         </div>}
