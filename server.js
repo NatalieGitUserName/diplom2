@@ -16,7 +16,7 @@ const app = express();
 
 app.use(cors({
     origin: "http://localhost:3000",
-    method: ["GET", "POTS", "PUT", "DELETE"],
+    method: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }))
 app.use(express.json({limit: '50mb'}));
@@ -55,7 +55,6 @@ app.post('/login', (req, res) => {
         });
     });
 });
-
 app.post('/register', (req, res) => {
     const { username, password, email } = req.body;
     // Check if the user already exists
@@ -82,20 +81,20 @@ app.post('/register', (req, res) => {
                     console.error('Error registering user:', err);
                     return res.status(500).json({ error: 'An error occurred' });
                 }
-
-                res.status(200).json({ message: 'User registered successfully' });
+                pool.query('SELECT * FROM users WHERE username = ?', [username, username], (error, results) => {
+                    delete results[0].password
+                    res.status(200).json({...results[0], message: 'User registered successfully' });
+                })
             });
         });
     });
 });
-
 app.get('/getOffers', (req, res) => {
     pool.query('SELECT * FROM offers', (error, results) => {
         return res.status(200).send(results)}
     )
     res.status(500)
 })
-
 app.get('/getOffer', (req, res) => {
     const {id} = req.query
 
@@ -104,7 +103,6 @@ app.get('/getOffer', (req, res) => {
     )
     res.status(500)
 })
-
 app.post('/setFirstName', (req, res) => {
     const {firstName, id} = req.body;
 
@@ -112,11 +110,11 @@ app.post('/setFirstName', (req, res) => {
         if (error) {console.error('Error registering user:', error);}
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
+            delete results[0].password
             res.status(200).json(results[0])
         });
     });
 })
-
 app.post('/setSecondName', (req, res) => {
     const {secondName, id} = req.body;
 
@@ -124,11 +122,11 @@ app.post('/setSecondName', (req, res) => {
         if (error) {console.error('Error registering user:', error);}
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
+            delete results[0].password
             res.status(200).json(results[0])
         });
     });
 })
-
 app.post('/setThirdName', (req, res) => {
     const {thirdName, id} = req.body;
 
@@ -136,11 +134,11 @@ app.post('/setThirdName', (req, res) => {
         if (error) {console.error('Error registering user:', error);}
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
+            delete results[0].password
             res.status(200).json(results[0])
         });
     });
 })
-
 app.post('/setPhoto', (req, res) => {
     const {photo, id} = req.body;
 
@@ -148,11 +146,11 @@ app.post('/setPhoto', (req, res) => {
         if (error) {console.error('Error registering user:', error);}
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
+            delete results[0].password
             res.status(200).json(results[0])
         });
     });
 })
-
 app.post('/setBirthday', (req, res) => {
     const {birthday, id} = req.body;
 
@@ -160,6 +158,19 @@ app.post('/setBirthday', (req, res) => {
         if (error) {console.error('Error registering user:', error);}
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
+            delete results[0].password
+            res.status(200).json(results[0])
+        });
+    });
+})
+app.post('/subscribe', (req, res) => {
+    const {offersSub, id} = req.body;
+console.log(req.body)
+        pool.query('UPDATE users SET offersSub = ? WHERE id = ?', [JSON.stringify(offersSub), id], (error, results) => {
+        if (error) {console.error('Error registering user:', error);}
+        pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
+            if (error) {console.error('Error checking user:', error);}
+            delete results[0].password
             res.status(200).json(results[0])
         });
     });

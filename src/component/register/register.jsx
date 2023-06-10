@@ -1,8 +1,8 @@
 import s from "../login/login.module.css"
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {interactAction, setOffersAction} from "../../store/clubReducer";
+import {interactAction, setOffersAction, setUserAction} from "../../store/clubReducer";
 import {useDispatch} from "react-redux";
 
 let Register = () => {
@@ -15,6 +15,8 @@ let Register = () => {
             password2: '',
         }
     )
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch()
 
@@ -29,6 +31,8 @@ let Register = () => {
             })
                 .then(response => {
                     console.log(response.data);
+                    dispatch(setUserAction(response.data))
+                    navigate('/personal-page')
                 })
                 .catch(error => {
                     console.error(error);
