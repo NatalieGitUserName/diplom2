@@ -10,7 +10,6 @@ import {useNavigate} from "react-router-dom";
 let Login = () => {
 
     const dispatch = useDispatch()
-
     const navigate = useNavigate();
 
     const [data, setDate] = useState(
@@ -19,8 +18,10 @@ let Login = () => {
             password: ''
         }
     )
-
-    useEffect( () => {dispatch(interactAction(false))}, [])
+    const [err, setErr] = useState('')
+    useEffect( () => {dispatch(interactAction(false))},
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [])
 
     let login = () => {
         if (data.username !== '' && data.password !== '') {
@@ -33,21 +34,26 @@ let Login = () => {
                     navigate('/personal-page')
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error(error.response.data.error);
+                    setErr(error.response.data.error)
                 });
+        } else if (data.username === '') {
+            setErr('No login entered')
+        } else if (data.password === '') {
+            setErr('No password entered')
         }
     }
     console.log(data)
 
     return (
-        <body className={s.login}>
+        <div className={s.login}>
         <InteractionPoint onlyBig={true}/>
         <BluredInteractionPoint/>
         <div className={s.frame}>
             <div className={s.window}>
                 <h1 className={s.pageTitle}>Login</h1>
                 <br/>
-                <strong className={s.errorMessage}>Алярм</strong>
+                {err !== '' && <strong className={s.errorMessage}>{err}</strong>}
                 <br/>
                 <div className={s.form}>
                     <input type="email" name="email" className={s.userEmail} value={data.username} onChange={e => {setDate({...data, username: e.target.value})}} placeholder="Email or username"
@@ -68,7 +74,7 @@ let Login = () => {
                                              onMouseLeave={() => {dispatch(interactAction(false))}}>Singup</a></p>
             </div>
         </div>
-        </body>
+        </div>
     )
 }
 

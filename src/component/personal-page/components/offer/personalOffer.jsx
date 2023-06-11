@@ -1,6 +1,8 @@
 import s from './personalOffer.module.css'
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setUserAction} from "../../../../store/clubReducer";
 
 
 let PersonalOffer = (props) => {
@@ -16,23 +18,60 @@ let PersonalOffer = (props) => {
     }, [])
 
 
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+    console.log(props)
+    let unsubscribe = () => {
+        let offersSub
+        if (user) {
+            if (user.offersSub === null) {
+                offersSub = {offersId: []}
+            }
+            else {
+                offersSub = JSON.parse(user.offersSub)
+            }
+
+            let find = true
+            for (let i = 0; i < offersSub.offersId.length; i++) {
+                if (offersSub.offersId[i] === props.id) {
+                    offersSub.offersId.splice(i, 1)
+                    find = false;
+                    break;
+                }
+            }
+
+            console.log(find)
+
+            if (!find) {
+                // offersSub.offersId.push(props.id)
+
+                axios.post('http://localhost:3001/subscribe',
+                    {
+                        offersSub: offersSub,
+                        id: user.id
+                    })
+                    .then(response => {
+                        dispatch(setUserAction(response.data))
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        } else {
+            alert('You are not authorisations!')
+        }
+    }
+
     return (
         <div className={s.container}>
-            <br/>
-            <br/>
-            <span>Offer id: {props.id}</span>
-            <br/>
-            <span>Offer title: {offer.title}</span>
-            <br/>
-            <span>Offer day: {offer.day}</span>
-            <br/>
-            <span>Offer age: {offer.age}</span>
-            <br/>
-            <span>Offer time: {offer.time}</span>
-            <br/>
-            <span>Photo:</span>
-            <br/>
+            <div>
+                <span>{offer.title}</span>
+                <span>Every {offer.day}</span>
+                <span>Age: {offer.age}</span>
+                <span>Time: {offer.time}</span>
+            </div>
             <img src={offer.photo} style={{width: '300px'}} alt=""/>
+            <button onClick={() => {unsubscribe()}}>Unsubscribe</button>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import s from "./mainPage.module.css"
 import {useState} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import ball from '../../img/ball.jpg'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {interactAction} from "../../store/clubReducer";
 import InteractionPoint from "../points/interactionPoint/interactionPoint";
 
@@ -16,10 +16,20 @@ let MainPage = () => {
         journal: false
     })
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+    const navigate = useNavigate();
+
+    let login = () => {
+        if (user) {
+            navigate('/personal-page')
+        } else {
+            navigate('/login')
+        }
+    }
 
     return (
-        <body className={s.main} style={{overflow: 'hidden !importan'}}>
+        <div className={s.main} style={{overflow: 'hidden'}}>
         <InteractionPoint/>
         <nav>
             <div className={`${s.navSection} ${s.navLogoSection}`}>
@@ -108,9 +118,11 @@ let MainPage = () => {
                     >ABOUT US
                         {dropDownMenu.about && <div className={s.navDropDownMenu}>
                             <NavLink
+                                to={'/history'}
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>History</NavLink>
                             <NavLink
+                                to={'/awards'}
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>Awards</NavLink>
                         </div>}
@@ -138,10 +150,10 @@ let MainPage = () => {
                                 to={'/schedule'}
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>Schedule</NavLink>
-                            <NavLink
-                                to={'/login'}
+                            <p
+                                onClick={() => {login()}}
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
-                                onMouseLeave={() => {dispatch(interactAction(false))}}>Loggin</NavLink>
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>Loggin</p>
                         </div>}
                     </span>
                 </div>
@@ -367,7 +379,7 @@ let MainPage = () => {
 
 
         </main>
-        </body>
+        </div>
     )
 }
 

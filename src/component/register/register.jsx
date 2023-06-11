@@ -2,7 +2,7 @@ import s from "../login/login.module.css"
 import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {interactAction, setOffersAction, setUserAction} from "../../store/clubReducer";
+import {interactAction, setUserAction} from "../../store/clubReducer";
 import {useDispatch} from "react-redux";
 
 let Register = () => {
@@ -20,7 +20,10 @@ let Register = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {dispatch(interactAction(false))}, [])
+    const [err, setErr] = useState('')
+    useEffect(() => {dispatch(interactAction(false))},
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [])
 
     let register = () => {
         if (data.username !== '' && data.email !== '' && data.password1 !== '' && data.password2 !== '' && data.password1 === data.password2) {
@@ -30,23 +33,28 @@ let Register = () => {
                 password: data.password1
             })
                 .then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     dispatch(setUserAction(response.data))
                     navigate('/personal-page')
                 })
                 .catch(error => {
-                    console.error(error);
+                    // console.error(error.response.data.error);
+                    setErr(error.response.data.error)
                 });
+        } else if (data.password1 === '' || data.password2 === '' || data.username === '' || data.email === '') {
+            setErr('Not all fields are filled')
+        } else {
+            setErr('Passwords don`t match')
         }
     }
 
     return (
-        <body>
+        <div>
             <div className={s.frame}>
             <div className={s.window}>
                 <h1 className={s.pageTitle}>Register</h1>
                 <br/>
-                <strong className={s.errorMessage}>Алярм</strong>
+                {err !== '' && <strong className={s.errorMessage}>{err}</strong>}
                 <br/>
                 <div className={s.form}>
                     <input type="text" name="name" className={s.userEmail} value={data.username} onInput={event => {setDate({...data, username: event.target.value})}} placeholder="Name"/>
@@ -63,7 +71,7 @@ let Register = () => {
                 <p>Have an account? <NavLink className={s.link} to="/login">Login</NavLink></p>
             </div>
             </div>
-        </body>
+        </div>
     )
 }
 

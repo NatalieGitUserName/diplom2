@@ -6,6 +6,9 @@ import Register from "./component/register/register";
 import Offers from "./component/offers/offers";
 import Offer from "./component/offer/offer";
 import PersonalPage from "./component/personal-page/personalPage";
+import Schedule from "./component/schedule/schedule";
+import AboutUs from "./component/aboutUs/aboutUs";
+import Awards from "./component/awards/awards";
 
 
 function App() {
@@ -29,6 +32,15 @@ function App() {
                 }/>
                 <Route path={'/personal-page'} element={
                     <PersonalPage/>
+                }/>
+                <Route path={'/schedule'} element={
+                    <Schedule/>
+                }/>
+                <Route path={'/history'} element={
+                    <AboutUs/>
+                }/>
+                <Route path={'/awards'} element={
+                    <Awards/>
                 }/>
             </Routes>
         </div>

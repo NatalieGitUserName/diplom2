@@ -3,7 +3,7 @@ import Header from "../header/header";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
-import {interactAction, setOffersAction, setSelectedOffersAction, setUserAction} from "../../store/clubReducer";
+import {interactAction, setSelectedOffersAction, setUserAction} from "../../store/clubReducer";
 import axios from "axios";
 
 let Offer = () => {
@@ -20,38 +20,41 @@ let Offer = () => {
 
     let subscribe = () => {
         let offersSub
-
-        if (user.offersSub === null) {
-            offersSub = {offersId: []}
-        }
-        else {
-             offersSub = JSON.parse(user.offersSub)
-        }
-
-        let find = false
-        for (let i = 0; i < offersSub.offersId.length; i++) {
-            if (offersSub.offersId[i] === offer.id) {
-                find = true;
-                break;
+        if (user) {
+            if (user.offersSub === null) {
+                offersSub = {offersId: []}
             }
+            else {
+                offersSub = JSON.parse(user.offersSub)
+            }
+
+            let find = false
+            for (let i = 0; i < offersSub.offersId.length; i++) {
+                if (offersSub.offersId[i] === offer.id) {
+                    find = true;
+                    break;
+                }
+            }
+
+            if (!find) {
+                offersSub.offersId.push(offer.id)
+
+                axios.post('http://localhost:3001/subscribe',
+                    {
+                        offersSub: offersSub,
+                        id: user.id
+                    })
+                    .then(response => {
+                        dispatch(setUserAction(response.data))
+                        alert('Subscribe successfully!')
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            } else {alert('Already subscribed!')}
+        } else {
+            alert('You are not logged in!')
         }
-
-        if (!find) {
-            console.log(offersSub)
-            offersSub.offersId.push(offer.id)
-
-            axios.post('http://localhost:3001/subscribe',
-                {
-                    offersSub: offersSub,
-                    id: user.id
-                })
-                .then(response => {
-                    dispatch(setUserAction(response.data))
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        } else {console.log(offersSub)}
     }
 
     return(
@@ -66,7 +69,7 @@ let Offer = () => {
                         <p><span className={s.coloredText}>When? </span>{offer.whenText}</p>
                         <p><span className={s.coloredText}>Who? </span>{offer.whoText}</p>
                         <p><span className={s.coloredText}>Where? </span>{offer.whereText}</p>
-                        <div>
+                        <div className={s.sub}>
                             <button onClick={() => {subscribe()}}>Subscribe</button>
                         </div>
                     </div>

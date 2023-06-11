@@ -2,6 +2,12 @@
     width: 400px;
 }
 
+.container .cal {
+    width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .container .highlighted {
     background-color: #cbc8e8;
 }

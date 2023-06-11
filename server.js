@@ -51,6 +51,9 @@ app.post('/login', (req, res) => {
 
             delete results[0].password
             // Passwords match, user is authenticated
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json({...results[0], message: 'Login successful' });
         });
     });
@@ -83,6 +86,9 @@ app.post('/register', (req, res) => {
                 }
                 pool.query('SELECT * FROM users WHERE username = ?', [username, username], (error, results) => {
                     delete results[0].password
+                    const dateObject = new Date(results[0].birthday);
+                    dateObject.setDate(dateObject.getDate() + 1);
+                    results[0].birthday = dateObject
                     res.status(200).json({...results[0], message: 'User registered successfully' });
                 })
             });
@@ -111,6 +117,9 @@ app.post('/setFirstName', (req, res) => {
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
             delete results[0].password
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json(results[0])
         });
     });
@@ -123,6 +132,9 @@ app.post('/setSecondName', (req, res) => {
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
             delete results[0].password
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json(results[0])
         });
     });
@@ -135,6 +147,9 @@ app.post('/setThirdName', (req, res) => {
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
             delete results[0].password
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json(results[0])
         });
     });
@@ -147,6 +162,9 @@ app.post('/setPhoto', (req, res) => {
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
             delete results[0].password
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json(results[0])
         });
     });
@@ -159,6 +177,9 @@ app.post('/setBirthday', (req, res) => {
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
             delete results[0].password
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json(results[0])
         });
     });
@@ -171,6 +192,9 @@ console.log(req.body)
         pool.query('SELECT * FROM users WHERE id = ?', [id], (error, results) => {
             if (error) {console.error('Error checking user:', error);}
             delete results[0].password
+            const dateObject = new Date(results[0].birthday);
+            dateObject.setDate(dateObject.getDate() + 1);
+            results[0].birthday = dateObject
             res.status(200).json(results[0])
         });
     });

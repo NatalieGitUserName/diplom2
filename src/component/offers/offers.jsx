@@ -1,6 +1,5 @@
 import s from "./offers.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {NavLink} from "react-router-dom";
 import Card from "./componets/card/card";
 import {useEffect} from "react";
 import axios from "axios";
@@ -34,6 +33,9 @@ let Offers = () => {
 
                 </article>
             </div>
+            <br/>
+            <br/>
+            <br/>
         </div>
     )
 }

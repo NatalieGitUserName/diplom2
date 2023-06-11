@@ -1,0 +1,24 @@
+:root{
+    --icon-color: rgb(163,116,255);
+}
+
+.gridArticleRows {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 4rem 10rem;
+}
+
+.text {
+    color: white;
+    font-family: antique-olive,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-size: 2em;
+    line-height: 1.6;
+    cursor: default;
+}
+
+.textParagraph {
+    /* z-index: 5; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

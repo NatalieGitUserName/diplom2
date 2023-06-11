@@ -1,11 +1,52 @@
 import s from './card.module.css'
-import {interactAction} from "../../../../store/clubReducer";
-import {useDispatch} from "react-redux";
+import {interactAction, setUserAction} from "../../../../store/clubReducer";
+import {useDispatch, useSelector} from "react-redux";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 let Card = (props) => {
 
     const dispatch = useDispatch()
+    let user = useSelector(state => state.user)
+
+    let subscribe = () => {
+        let offersSub
+        if (user) {
+            if (user.offersSub === null) {
+                offersSub = {offersId: []}
+            }
+            else {
+                offersSub = JSON.parse(user.offersSub)
+            }
+
+            let find = false
+            for (let i = 0; i < offersSub.offersId.length; i++) {
+                if (offersSub.offersId[i] === props.id) {
+                    find = true;
+                    break;
+                }
+            }
+
+            if (!find) {
+                offersSub.offersId.push(props.id)
+
+                axios.post('http://localhost:3001/subscribe',
+                    {
+                        offersSub: offersSub,
+                        id: user.id
+                    })
+                    .then(response => {
+                        dispatch(setUserAction(response.data))
+                        alert('Subscribe successfully!')
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            } else {alert('Already subscribed!')}
+        } else {
+            alert('You are not logged in!')
+        }
+    }
 
     return (
         <div className={s.card}>
@@ -25,10 +66,14 @@ let Card = (props) => {
                 </div>
                 <h3>{props.title}</h3>
             </div>
-            <NavLink
+            <NavLink style={{borderRadius: 0}}
                 onMouseEnter={() => {dispatch(interactAction(true))}}
                 onMouseLeave={() => {dispatch(interactAction(false))}}
                 className={s.cardButton} to={'/offer/' + props.id}>See more</NavLink>
+            <button style={{borderTop: "1px solid #000000", fontWeight: '700', height: "40px"}} onClick={() => {subscribe()}}
+                onMouseEnter={() => {dispatch(interactAction(true))}}
+                onMouseLeave={() => {dispatch(interactAction(false))}}
+                className={s.cardButton}>Subscribe</button>
         </div>
     )
 }

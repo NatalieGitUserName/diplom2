@@ -1,3 +1,56 @@
 .container {
+    display: grid;
+    grid-template-rows: 0.8fr 1fr;
+    width: 300px;
+    margin: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+    animation: animClose 0.5s;
+}
 
+.container:hover {
+    transform: scale(105%);
+    animation: animOpen 0.5s;
+}
+
+@keyframes animOpen {
+    from {
+        transform: scale(100%);
+    }
+    to {
+        transform: scale(105%);
+    }
+}
+
+@keyframes animClose {
+    from {
+        transform: scale(105%);
+    }
+    to {
+        transform: scale(100%);
+    }
+}
+
+.container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: aliceblue;
+}
+
+.container > button {
+    border: 0;
+    height: 35px;
+    background-color: #a97efd;
+    transition: all 300ms ease-in-out;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.container > button:hover {
+    background-color: #ff5618;
 }

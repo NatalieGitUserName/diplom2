@@ -1,7 +1,6 @@
 import s from './bluredInteractionPoint.module.css'
 import {useEffect, useRef} from "react";
 import {throttle} from "lodash";
-import {useSelector} from "react-redux";
 
 let BluredInteractionPoint = () => {
 
@@ -26,26 +25,20 @@ let BluredInteractionPoint = () => {
 
     const animateCursor = (e) => {
 
-        // if (cursorRef.current.offsetWidth !== null) {
-        //     cursorRef.current.offsetWidth = '1px';
-        // }
-        //
-        // if (cursorRef.current.offsetHeight !== null) {
-        //     cursorRef.current.offsetHeight = '1px';
-        // }
 
+        if (cursorRef.current) {
+            const x = cursorRef.current.offsetWidth !== null ? e.clientX - cursorRef.current.offsetWidth / 2 : 0;
+            const y = cursorRef.current.offsetHeight !== null ? e.clientY - cursorRef.current.offsetHeight / 2 : 0;
 
-        const x = e.clientX - cursorRef.current.offsetWidth / 2;
-        const y = e.clientY - cursorRef.current.offsetHeight / 2;
+            const frameKeys = {
+                transform: `translate(${x}px, ${y}px)`,
+            };
 
-        const frameKeys = {
-            transform: `translate(${x}px, ${y}px)`,
-        };
-
-        cursorRef.current.animate(frameKeys, {
-            duration: 500,
-            fill: 'forwards',
-        });
+            cursorRef.current.animate(frameKeys, {
+                duration: 500,
+                fill: 'forwards',
+            });
+        }
     };
 
     return (

@@ -1,6 +1,15 @@
 .container {
     width: 100%;
 }
+
+.mainBlock {
+    padding: 3rem 10rem;
+}
+
+/* .container .infoGridBlockContainer {
+    display: grid;
+    grid-column: 1fr 1fr;
+} */
 .container .infoBlockContainer {
     position: relative;
     width: 100%;
@@ -8,40 +17,163 @@
     display: flex;
     justify-content: center;
 }
-.container .infoBlockContainer .infoBlock {
-    width: 900px;
-    height: 100%;
-    background-color: #939393;
+
+.container .personalInfoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
 }
+
+.container .personalInfoBlock span {
+    font-size: 2em;
+}
+
+.container .personalInfoBlock p {
+    font-size: 1.2em;
+}
+
+.container .infoBlockContainer {
+    margin-top: 3rem;
+}
+
+.container .infoBlockContainer .infoBlock {
+    width: 1100px;
+    height: 100%;
+    background-color: #c9c9c90a;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 20px;
+}
+
+.infoBlockFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .container .infoBlockContainer .infoBlock .avatar {
     width: 250px;
     height: 250px;
     background-position: center;
     background-size: cover;
+    border-radius: 50%;
 }
 .container .changeInfoContainer {
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
     position: relative;
     display: flex;
     justify-content: center;
 }
-.container .changeInfoContainer .changeInfo {
-    width: 900px;
-    height: 100%;
-    background-color: #b2b2b2;
+
+.changeInfoField span {
+    font-size: 1.3em;
 }
+
+.changeInfoField {
+    margin-bottom: 2rem;
+}
+
+.changeInfoButtons {
+    margin-top: 0.5rem;
+}
+
+.changeInfoButtons button, .changeInfoButtons input {
+    font-size: 1em;
+    margin-right: 1rem;
+}
+
+.container .changeInfoContainer .changeInfo {
+    width: 1100px;
+    height: 100%;
+    background-color: #c9c9c90a;
+    padding: 3rem 3rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container .changeInfoContainer .changeInfo div button {
+    background-color: #a374ff;
+    border: 0;
+    border-radius: 10px;
+    height: 30px;
+    width: 160px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+}
+
+.container .changeInfoContainer .changeInfo div button:hover {
+    background-color: #b791ff;
+}
+
+.container .changeInfoContainer .changeInfo .changeInfoField {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
+
+.changeInfoField > span {
+    color: rgba(255, 255, 255, 0.884);
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.changeInfoButtons > input {
+    background-color: #c39cfa;
+    border-radius: 8px;
+    border: 1px solid #393053;
+    height: 30px;
+    padding-left: 8px;
+    letter-spacing: 1px;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.changeInfoButtons > input::file-selector-button {
+    background-color: #a374ff;
+    border: 0;
+    border-radius: 5px;
+    height: 24px;
+    opacity: 0.8;
+}
+
 .container .offersContainer {
     width: 100%;
     position: relative;
     display: flex;
     justify-content: center;
+    margin-top: 3rem;
+    /* padding-bottom: 3rem; */
 }
 .container .offersContainer .offers {
-    width: 900px;
+    width: 1100px;
     height: 100%;
-    background-color: #c9c9c9;
+    background-color: #c9c9c90a;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-radius: 20px;
 }
+.offersContainer .offers .description {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    font-size: 2em;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.89);
+}
+
+.сontainerOfoffers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
 .container .offersCalendar {
     width: 100%;
     height: 500px;
@@ -50,8 +182,53 @@
     justify-content: center;
 }
 .container .offersCalendar .calendar {
-    width: 900px;
+    width: 80%;
     height: 100%;
-    background-color: #8a8a8a;
+    background-color: transparent;
 }
 
+.gridBlockCalendar {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 100%;
+    width: 100%;
+}
+
+.centeredObject {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.centeredObject > span {
+    font-size: 2em;
+    line-height: 2em;
+    color: white;
+    padding-left: 3rem;
+    /* padding-bottom: 1rem; */
+}
+
+.container4Button > button {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+}
+
+.container4Button > button:hover {
+    background-color: #ba93fc;
+}
+
+.infoBlock .container4Button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container4Button button {
+    background-color: #a374ff;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    font-size: 1em;
+    padding: 0.5rem 1rem ;
+}
