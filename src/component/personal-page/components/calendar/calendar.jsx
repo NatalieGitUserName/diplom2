@@ -48,7 +48,7 @@ let OfferCalendar = (props) => {
 
     const [selectedDate, setSelectedDate] = useState(null);
 
-    // Обработчик события при выборе даты
+    // Handler for an event when a date is selected
     const handleDateClick = (date) => {
         setSelectedDate(date);
         console.log(getDayOfWeek(date))

@@ -18,20 +18,12 @@ let PersonalOffer = (props) => {
 
     return (
         <div className={s.container}>
-            <br/>
-            <br/>
-            <span>Offer id: {props.id}</span>
-            <br/>
-            <span>Offer title: {offer.title}</span>
-            <br/>
-            <span>Offer day: {offer.day}</span>
-            <br/>
-            <span>Offer age: {offer.age}</span>
-            <br/>
-            <span>Offer time: {offer.time}</span>
-            <br/>
-            <span>Photo:</span>
-            <br/>
+            <div>
+                <span>{offer.title}</span>
+                <span>{offer.day}</span>
+                <span>{offer.age}</span>
+                <span>{offer.time}</span>
+            </div>
             <img src={offer.photo} style={{width: '300px'}} alt=""/>
         </div>
     )
