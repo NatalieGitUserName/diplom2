@@ -1,4 +1,4 @@
-import s from './schedule.module.css'
+import s from './schedule.module.css';
 import BluredInteractionPoint from "../points/bluredInteractionPoint/bluredInteractionPoint";
 import Header from "../header/header";
 
@@ -62,6 +62,7 @@ let Schedule = () => {
                         </div>
                         
                     </div>
+                    <a className={`${s.textParagraph} + ${s.text} + ${s.link}`} href={require('../../img/WeeklySchedule.pdf')} download>Download Schedule</a>
                 </div>
                 
             </main>
