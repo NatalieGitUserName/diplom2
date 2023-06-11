@@ -1,6 +1,7 @@
 import './App.css';
 import Login from "./component/login/login";
 import Awards from "./component/awards/awards";
+import Gallery from "./component/gallery/gallery";
 import Schedule from "./component/schedule/schedule";
 import {Route, Routes} from "react-router-dom";
 import MainPage from "./component/mainPage/mainPage";
@@ -34,6 +35,9 @@ function App() {
                 }/>
                 <Route path={'/awards'} element={
                     <Awards/>
+                }/>
+                <Route path={'/gallery'} element={
+                    <Gallery/>
                 }/>
                 <Route path={'/schedule'} element={
                     <Schedule/>

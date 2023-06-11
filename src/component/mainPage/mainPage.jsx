@@ -114,6 +114,10 @@ let MainPage = () => {
                                 to={'/awards'}
                                 onMouseEnter={() => {dispatch(interactAction(true))}}
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>Awards</NavLink>
+                            <NavLink
+                                to={'/gallery'}
+                                onMouseEnter={() => {dispatch(interactAction(true))}}
+                                onMouseLeave={() => {dispatch(interactAction(false))}}>Gallery</NavLink>
                         </div>}
                     </span>
 
