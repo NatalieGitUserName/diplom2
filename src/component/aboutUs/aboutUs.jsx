@@ -66,10 +66,10 @@ let AboutUs = () => {
                 <div className={s.centered}>
                     <p style={{marginLeft: '40px'}}>Learn</p>
                     <p style={{marginLeft: '150px'}}>about <span className={s.colored}>our</span></p>
-                    <p>awards</p>
+                    <p>rewards</p>
                 </div>
                 <div className={s.btn}>
-                    <NavLink to={'/awards'}>See awards</NavLink>
+                    <NavLink to={'/awards'}>See rewards</NavLink>
                 </div>
             </article>
         </div>

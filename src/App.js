@@ -7,6 +7,7 @@ import Offers from "./component/offers/offers";
 import Offer from "./component/offer/offer";
 import PersonalPage from "./component/personal-page/personalPage";
 import Schedule from "./component/schedule/schedule";
+import Gallery from "./component/gallery/gallery";
 import AboutUs from "./component/aboutUs/aboutUs";
 import Awards from "./component/awards/awards";
 
@@ -35,6 +36,9 @@ function App() {
                 }/>
                 <Route path={'/schedule'} element={
                     <Schedule/>
+                }/>
+                <Route path={'/gallery'} element={
+                    <Gallery/>
                 }/>
                 <Route path={'/history'} element={
                     <AboutUs/>

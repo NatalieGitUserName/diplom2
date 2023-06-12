@@ -13,7 +13,7 @@ let MainPage = () => {
 
     const [dropDownMenu, setDropDownMenu] = useState({
         about: false,
-        journal: false
+        // journal: false
     })
 
     const dispatch = useDispatch();
@@ -105,8 +105,25 @@ let MainPage = () => {
                 </a>
             </div>
             <div className={`${s.navSection} ${s.navLinkSection}`}>
+                <div className={s.links}>
+                    <NavLink
+                        to={'/offers'}
+                        onMouseEnter={() => {dispatch(interactAction(true))}}
+                        onMouseLeave={() => {dispatch(interactAction(false))}}>Offers</NavLink>
+                </div>
+                <div className={s.links}>
+                    <NavLink
+                        to={'/schedule'}
+                        onMouseEnter={() => {dispatch(interactAction(true))}}
+                        onMouseLeave={() => {dispatch(interactAction(false))}}>Schedule</NavLink>
+                </div>
+                <p className={s.links}
+                    onClick={() => {login()}}
+                    onMouseEnter={() => {dispatch(interactAction(true))}}
+                    onMouseLeave={() => {dispatch(interactAction(false))}}>Personal page</p>
+
                 <div>
-                    <span
+                    <span 
                        onMouseEnter={() => {
                            dispatch(interactAction(true))
                            setDropDownMenu({...dropDownMenu, about: true})
@@ -134,7 +151,7 @@ let MainPage = () => {
 
                 </div>
 
-                <div>
+                {/* <div>
                     <span
                         onMouseEnter={() => {
                             dispatch(interactAction(true))
@@ -160,7 +177,7 @@ let MainPage = () => {
                                 onMouseLeave={() => {dispatch(interactAction(false))}}>Loggin</p>
                         </div>}
                     </span>
-                </div>
+                </div> */}
 
             </div>
             <div className={`${s.navSection} ${s.navSocialMediaSection}`}>

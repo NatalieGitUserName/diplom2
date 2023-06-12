@@ -58,7 +58,7 @@ let PersonalOffer = (props) => {
                     });
             }
         } else {
-            alert('You are not authorisations!')
+            alert('You are not authorized!')
         }
     }
 

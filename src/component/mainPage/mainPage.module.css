@@ -7,6 +7,7 @@
   --border-color: #393053;
   --text-color: rgba(255, 253, 253, 0.637);
   --icon-color: rgba(179, 139, 231, 0.61);
+  --links-color: rgba(188, 148, 240, 0.61);
   /* --link-color: #e1e0e2; */
 }
 
@@ -47,9 +48,12 @@ nav .navSection .navDropDownMenu a, nav .navSection .navDropDownMenu p {
   font-weight: 400;
   cursor: pointer;
 }
-nav .navSection .navDropDownMenu a:hover, nav .navSection .navDropDownMenu p:hover {
+nav .navSection .navDropDownMenu a:hover, nav .navSection .navDropDownMenu p:hover, .links:hover {
   text-decoration: underline;
   text-decoration-color: #5a4c96;
+}
+.links {
+  cursor: pointer;
 }
 nav .navLogoSection {
   justify-content: flex-start;
@@ -60,8 +64,11 @@ nav .navLinkSection {
 nav .navSocialMediaSection {
   gap: 2rem;
 }
-nav .navLogoSection, nav .navLinkSection {
-  flex-basis: 33.3333333333%;
+nav .navLogoSection {
+  flex-basis: 25%;
+}
+nav .navLinkSection {
+  flex-basis: 50%;
 }
 nav .navSocialMediaSection, nav .navContactSection {
   flex-grow: 1;
@@ -72,6 +79,7 @@ nav .navSocialMediaSection, nav .navContactSection {
   font-family: "Space Grotesk", sans-serif;
   color: var(--text-color);
 }
+
 .main p {
   font-size: 1.2rem;
   line-height: 160%;
@@ -269,5 +277,6 @@ main > article > .articleNavSection > button {
     display: none;
   }
 }
+
 
 /*# sourceMappingURL=mainPage.module.css.map */

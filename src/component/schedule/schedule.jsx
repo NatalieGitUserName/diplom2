@@ -23,6 +23,7 @@ let Schedule = () => {
 					<p>Dear Members of Junior Stars,</p>
 					<p>As we gear up for another fantastic year of football, we wanted to provide you with important information regarding the schedule for our club activities.</p>
 				</div>
+				<a  href={require('../../img/WeeklySchedule.pdf')} download>Download Schedule</a>
 			</div>
 
 			<div className={s.catalogue}>
@@ -72,6 +73,7 @@ let Schedule = () => {
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	)
 }

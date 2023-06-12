@@ -18,6 +18,15 @@
   line-height: 1.6;
   cursor: default;
 }
+.container .textContainer a {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 2em;
+  color: aquamarine;
+}
+.container .textContainer a:hover {
+  color: white;
+}
 .container .catalogue {
   position: relative;
   padding: 0;
